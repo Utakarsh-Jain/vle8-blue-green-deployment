@@ -1,0 +1,35 @@
+---
+- name: Verify VLE8 DevOps Environment
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+    - name: Check Docker version
+      command: docker --version
+      register: docker_status
+      changed_when: false
+
+    - name: Check Jenkins service
+      command: systemctl is-active jenkins
+      register: jenkins_status
+      changed_when: false
+
+    - name: Check Kubernetes version
+      command: kubectl version --client
+      register: kubernetes_status
+      changed_when: false
+
+    - name: Check Minikube status
+      command: minikube status
+      register: minikube_status
+      changed_when: false
+
+    - name: Display DevOps environment status
+      debug:
+        msg:
+          - "{{ docker_status.stdout }}"
+          - "Jenkins: {{ jenkins_status.stdout }}"
+          - "{{ kubernetes_status.stdout }}"
+          - "{{ minikube_status.stdout }}"

@@ -1,0 +1,16 @@
+# AWS CLI installation files
+aws/
+awscliv2.zip
+
+# Terraform generated files
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/crash.log
+terraform/crash.*.log
+terraform/.terraform.tfstate.lock.info
+
+# Sensitive files
+*.pem
+*.key
+kubeconfig
